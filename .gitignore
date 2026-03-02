@@ -1,0 +1,46 @@
+### Dependencies / build
+node_modules/
+dist/
+.vite/
+
+### Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+### OS / editor noise
+.DS_Store
+Thumbs.db
+
+### Env / secrets
+.env
+.env.*
+!.env.example
+.envrc
+.direnv/
+.npmrc
+.netrc
+
+### Personal data (backups, exports, local DBs)
+TODO.txt
+personal/
+private/
+backups/
+exports/
+tmp/
+cache/
+*.sqlite
+*.sqlite3
+*.db
+*.kdbx
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.csr
+*.backup.*
+*.export.*
+*.local.json

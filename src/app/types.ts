@@ -1,0 +1,35 @@
+export type WeekStartsOn = 0 | 1; // 0 = Sunday (US), 1 = Monday
+
+export type Outcome = {
+  id: string;
+  title: string;
+  notes: string;
+  startDate: string; // YYYY-MM-DD
+  endDate: string; // YYYY-MM-DD
+  createdAt: string; // ISO
+};
+
+export type MonthlyGoal = {
+  title: string;
+};
+
+export type WeeklyGoal = {
+  title: string;
+};
+
+export type DailyGoal = {
+  title: string;
+  done: boolean;
+  doneAt?: string;
+};
+
+export type PersistedStateV1 = {
+  version: 1;
+  weekStartsOn: WeekStartsOn;
+  selectedOutcomeId?: string;
+  outcomes: Outcome[];
+  monthly: Record<string, MonthlyGoal>;
+  weekly: Record<string, WeeklyGoal>;
+  daily: Record<string, DailyGoal>;
+};
+
