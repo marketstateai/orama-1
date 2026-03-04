@@ -27,9 +27,12 @@ export type PersistedStateV1 = {
   version: 1;
   weekStartsOn: WeekStartsOn;
   selectedOutcomeId?: string;
+  ui: {
+    showMonthlyObjectives: boolean;
+    showWeeklyObjectives: boolean;
+  };
   outcomes: Outcome[];
   monthly: Record<string, MonthlyGoal>;
   weekly: Record<string, WeeklyGoal>;
   daily: Record<string, DailyGoal>;
 };
-

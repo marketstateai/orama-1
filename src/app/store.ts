@@ -23,6 +23,10 @@ function defaultState(): State {
     version: 1,
     weekStartsOn: 0,
     selectedOutcomeId: undefined,
+    ui: {
+      showMonthlyObjectives: false,
+      showWeeklyObjectives: false
+    },
     outcomes: [],
     monthly: {},
     weekly: {},
@@ -39,6 +43,10 @@ function readState(): State {
     return {
       ...defaultState(),
       ...parsed,
+      ui: {
+        ...defaultState().ui,
+        ...(parsed as Partial<State>).ui
+      },
       outcomes: Array.isArray(parsed.outcomes) ? parsed.outcomes : []
     };
   } catch {
@@ -81,6 +89,12 @@ export function getAppState(): State {
 export const actions = {
   setWeekStartsOn: (weekStartsOn: WeekStartsOn) => {
     store.set((prev) => ({ ...prev, weekStartsOn }));
+  },
+  toggleShowMonthlyObjectives: () => {
+    store.set((prev) => ({ ...prev, ui: { ...prev.ui, showMonthlyObjectives: !prev.ui.showMonthlyObjectives } }));
+  },
+  toggleShowWeeklyObjectives: () => {
+    store.set((prev) => ({ ...prev, ui: { ...prev.ui, showWeeklyObjectives: !prev.ui.showWeeklyObjectives } }));
   },
   selectOutcome: (id: string) => {
     store.set((prev) => ({ ...prev, selectedOutcomeId: id }));
@@ -160,6 +174,10 @@ export const actions = {
     store.set(() => ({
       ...defaultState(),
       ...parsed,
+      ui: {
+        ...defaultState().ui,
+        ...(parsed as Partial<State>).ui
+      },
       outcomes: Array.isArray(parsed.outcomes) ? parsed.outcomes : []
     }));
   },
@@ -167,4 +185,3 @@ export const actions = {
     store.set(() => defaultState());
   }
 };
-

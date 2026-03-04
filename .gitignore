@@ -2,6 +2,9 @@
 node_modules/
 dist/
 .vite/
+*.tsbuildinfo
+vite.config.js
+vite.config.d.ts
 
 ### Logs
 *.log
@@ -25,6 +28,8 @@ Thumbs.db
 
 ### Personal data (backups, exports, local DBs)
 TODO.txt
+*.html
+!index.html
 personal/
 private/
 backups/

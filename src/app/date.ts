@@ -9,6 +9,24 @@ export function parseISODate(date: string): Date {
   return new Date(year, monthIndex, day);
 }
 
+// Date-only helpers that avoid DST drift by using UTC internally.
+export function isoToDayNumber(date: string): number {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(date);
+  if (!match) throw new Error(`Invalid date: ${date}`);
+  const year = Number(match[1]);
+  const monthIndex = Number(match[2]) - 1;
+  const day = Number(match[3]);
+  return Math.floor(Date.UTC(year, monthIndex, day) / 86400000);
+}
+
+export function dayNumberToISO(dayNumber: number): string {
+  const d = new Date(dayNumber * 86400000);
+  const y = d.getUTCFullYear();
+  const m = String(d.getUTCMonth() + 1).padStart(2, "0");
+  const day = String(d.getUTCDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
 export function toISODate(d: Date): string {
   const y = d.getFullYear();
   const m = String(d.getMonth() + 1).padStart(2, "0");
@@ -146,4 +164,3 @@ export function yearsInRange(startISO: string, endISO: string): number[] {
   for (let y = startY; y <= endY; y++) years.push(y);
   return years;
 }
-
